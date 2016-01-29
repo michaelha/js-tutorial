@@ -33,3 +33,23 @@ logName.apply(person, ['en', 'es']);
   console.log('Arguments: ' + lang1 + ' ' +lang2);
   console.log('------');
 }).apply(person, ['en', 'es']);
+
+
+// function borrowing
+
+var person2 = {
+  firstname: 'Jane',
+  lastname: 'Doe'
+}
+
+person.getFullName.apply(person2);
+
+// function currying
+
+function multiply(a, b) {
+  return a*b;
+}
+
+var multipleByTwo = multiply.bind(this, 2);
+
+console.log( multipleByTwo(4) ) ;
