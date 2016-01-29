@@ -24,3 +24,12 @@ logName.call(person, 'en', 'es');
 
 // apply - requires an array for the 2nd element
 logName.apply(person, ['en', 'es']);
+
+// immediately invote the function
+
+(function(lang1, lang2) {
+
+  console.log('Logged: ' + this.getFullName());
+  console.log('Arguments: ' + lang1 + ' ' +lang2);
+  console.log('------');
+}).apply(person, ['en', 'es']);
