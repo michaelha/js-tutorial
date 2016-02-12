@@ -1,51 +1,40 @@
-function sayHiLater() {
 
-    var greeting = 'Hi!';
+var user = Model();
+user.set('name', 'Alvin');
+user.set('location', 'SF');
 
-    setTimeout(function() {
+console.log('name is', user.get('name'));
+console.log('location ', user.get('location'));
 
-        console.log(greeting);
-
-    }, 3000);
-
-}
-
-sayHiLater();
-
-// jQuery uses function expressions and first-class functions!
-//$("button").click(function() {
-//
-//});
-
-function tellMeWhenDone(callback) {
-
-    var a = 1000; // some work
-    var b = 2000; // some work
-
-    callback(); // the 'callback', it runs the function I give it!
-
-}
-
-function finishThis(callback) {
-  callback();
-}
-
-finishThis(
-  function() {
-    console.log( 'done done done');
-  }
-
-
-);
-
-tellMeWhenDone(function() {
-
-    console.log('I am done!');
-
+user.onChange('name', function(newValue) {
+  console.log('name was changed to', newValue);
 });
 
-tellMeWhenDone(function() {
+user.set('name', 'test');
 
-    console.log('All done...');
+function Model() {
+  var obj = {};
+  return {
+    'set': function(key, value) {
+      if ( typeof obj[key] === 'undefined' ) {
+        obj[key] = value;
+      } else {
 
-});
+        console.log('begin name change');
+
+        obj[key] = value;
+
+      }
+    },
+    'get': function(key) {
+      return obj[key];
+    },
+    'onChange': function(key, callback) {
+      //console.log(arguments);
+      //callback();
+
+
+
+    }
+  };
+}
